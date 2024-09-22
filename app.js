@@ -32,10 +32,9 @@ app.post("/signup", async (req, res) => {
         email,
         password: hash,
       });
-
       let token = jwt.sign({ email }, "shdadacad");
       res.cookie("token", token);
-      res.redirect("/profile");
+      res.redirect("/login");
     });
   });
 });
@@ -48,7 +47,7 @@ app.post("/login", async (req, res) => {
   let user = await Usermodel.findOne({ username: req.body.username });
   if (!user) return res.send("something went wrong");
   bcrypt.compare(req.body.password, user.password, function (err, result) {
-    // result == true
+  
     if (result === true) {
       let token = jwt.sign({ username: user.username }, "shdadacad");
       res.cookie("token", token);
@@ -100,7 +99,7 @@ app.post("/createuser", function (req, res, next) {
         gender: req.body.gender,
         courses: req.body.courses,
         fileUpload: req.file.filename,
-        hireDate: new Date("2023-09-20"),
+        hireDate: new Date("2023-09-22"),
       });
       await Media.save();
       res.redirect("/profile");
@@ -110,7 +109,7 @@ app.post("/createuser", function (req, res, next) {
   });
 });
 
-// Route to render the edit user form
+
 app.get("/edit/:id", isLoggedIn, async (req, res) => {
   try {
     const user = await employee.findById(req.params.id);
@@ -128,7 +127,6 @@ app.post("/edit/:id", isLoggedIn, (req, res) => {
     if (err) {
       return res.status(500).send("Error uploading file");
     }
-
     try {
       const { name, email, mobile, designation, gender, courses} =
         req.body;
@@ -155,7 +153,6 @@ app.post("/edit/:id", isLoggedIn, (req, res) => {
     }
   });
 });
-
 app.get("/delete/:id", isLoggedIn, async (req, res) => {
   try {
     await employee.findByIdAndDelete({ _id: req.params.id });
@@ -164,7 +161,6 @@ app.get("/delete/:id", isLoggedIn, async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
-
 app.get("/search", isLoggedIn, async (req, res) => {
   const keyword = req.query.keyword;
 
@@ -183,7 +179,6 @@ app.get("/search", isLoggedIn, async (req, res) => {
       // If no keyword, fetch all employees
       employees = await employee.find();
     }
-
     const user = await Usermodel.findOne();
     res.render("profile", { users: employees, user: user });
   } catch (error) {

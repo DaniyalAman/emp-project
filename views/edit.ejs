@@ -5,30 +5,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>Edit User</title>
+  <title>Update User</title>
 </head>
 
 <body>
-  <div class="min-h-screen w-full flex justify-center bg-slate-600 p-5">
-    <div class="card1  w-[30%] bg-gray-700 rounded-lg text-white shadow-slate-200 shadow-lg p-8">
-      <h2 class="text-3xl mb-2 text-yellow-300 text-center font-semibold underline ">Edit User</h2>
+  <div class="min-h-screen w-full flex justify-center bg-black p-5">
+    <div class="card1  w-[30%] bg-black-700 rounded-lg text-white shadow-slate-200 shadow-lg p-8">
+      <h2 class="text-3xl mb-2 text-white-300 text-center font-semibold ">Update User</h2>
 
       <form class="mt-4" action="/edit/<%= user._id %>" method="post">
-        <label for="name">Name:</label>
+        <label for="name">Full_Name:</label>
         <input class="px-2 mb-3 bg-transparent border rounded-md border-zinc-500" type="text" name="name" value="<%= user.name %>" required>
         <br>
 
-        <label for="email">Email:</label>
-        <input class="px-2 mb-3 bg-transparent border rounded-md border-zinc-500" type="email" name="email" value="<%= user.email %>" required>
+        <label for="email">Email_ID:</label>
+        <input class="px-2 ml-4 mb-3 bg-transparent border rounded-md border-zinc-500" type="email" name="email" value="<%= user.email %>" required>
         <br>
 
-        <label for="mobile">Mobile No:</label>
-        <input class="px-2 mb-3 bg-transparent border rounded-md border-zinc-500" type="tel" name="mobile" value="<%= user.mobile %>" required>
+        <label for="mobile">Phone_No:</label>
+        <input class="px-2 mb-3 ml-1 bg-transparent border rounded-md border-zinc-500" type="tel" name="mobile" value="<%= user.mobile %>" required>
         <br>
 
         <label for="designation">Designation:</label>
-        <select class="px-2 mb-3 bg-slate-600 border rounded-md border-zinc-500" name="designation">
-          <option value="hr" <%= user.designation === 'hr' ? 'selected' : '' %>>HR</option>
+        <select class="px-2 mb-3  text-black border rounded-md border-zinc-500" name="designation">
+          <option  value="hr" <%= user.designation === 'hr' ? 'selected' : '' %>>HR</option>
           <option value="manager" <%= user.designation === 'manager' ? 'selected' : '' %>>Manager</option>
           <option value="sales" <%= user.designation === 'sales' ? 'selected' : '' %>>Sales</option>
         </select>
@@ -57,7 +57,7 @@
         <input class="mt-1 bg-transparent text-white" type="file" name="fileUpload" value="img src=/images/<%= user.fileUpload %>"><br><br>
 
 
-        <input class="px-2 py-1 bg-blue-500 border rounded-md text-lg mb-4 ml-2" type="submit" value="Update">
+        <input class="px-2 py-1 bg-transparent-500 border rounded-md text-lg mb-4 ml-2" type="submit" value="Update">
       </form>
 
 

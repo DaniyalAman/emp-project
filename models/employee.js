@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 function generateUniqueId() {
-  return Math.floor(1000 + Math.random() * 90000); // Generates a number between 1000 and 99999
+  return Math.floor(1000 + Math.random() * 90000); 
 }
 const employeeSchema = new mongoose.Schema(
   {
